@@ -1,0 +1,38 @@
+﻿<div id="blogTitle" class="blogtitle">
+    <div class="row">
+        <div class="col-md-push-2 col-md-8 col-md-pull-2 col-xs-push-1 col-xs-10 col-xs-pull-1">
+            <span>Lights,Coffee,Books,Conversations</span>
+        </div>
+    </div>
+
+</div>
+<div class="row loginclass fixbackground">
+    <div class="col-md-push-3 col-md-6 col-md-pull-3">
+        @using (Html.BeginForm("LoginVerify", "Users", FormMethod.Post, null))
+        {
+            <div>
+                @*@Html.Label("Enter Username")
+                    @Html.TextBox("name", "name")*@
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Name</span>
+                        <input id="name" name="name" type="text" class="form-control" placeholder="Enter Username" required="required">
+                    </div>
+                </div>
+            </div>
+            <div>
+                @*@Html.Label("Enter Password")
+                    @Html.Password("password", "password")*@
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Pass</span>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Enter Password" required="required">
+                    </div>
+                </div>
+
+            </div>
+
+            <input type="submit" value="LogOn" name="LogOn" />
+        }
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Messagecenter.Models.Message>
+
+
+
+<div id="messageContent" class="row">
+    @foreach (var item in Model)
+    {
+        string tipclass = string.Empty;
+        if(ViewBag.isUser == item.Name)
+        {
+            tipclass = "right-top floatright";
+        }
+        else
+        {
+            tipclass = "left-top floatleft";
+        }
+        <div class="row">
+            <div class="talk-bubble  tri-right @tipclass">
+                <div class="talktext textbody">
+                    <p>@Html.DisplayFor(modelItem => item.Body)</p>
+                    <br />
+                    <small>@Html.DisplayFor(modelItem => item.Time)</small>
+                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</span>
+                </div>
+            </div>
+        </div>
+ 
+    }
+    </div>
+   <script>
+       var element = document.getElementById("MessageBox");
+       element.scrollTop = element.scrollHeight;
+
+   </script>
+
+
+
+      
+
+
+
+

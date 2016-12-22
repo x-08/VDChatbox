@@ -1,0 +1,55 @@
+﻿<div class="row">
+    <div class="col-md-push-1 col-md-10 col-md-pull-1">
+        <div id="MessageBox" >
+            <p>
+                @{Html.RenderPartial("_indexPartial");}
+            </p>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-push-3 col-md-6 col-md-pull-3 ">
+
+            @{
+                int pagenumber = ViewBag.pageNumber;
+                if (ViewBag.isPreviousLinkAvailable)
+                {
+                    int previousPageNumber = pagenumber - 1;
+                    //Html.RenderAction("Post", "Index", previousPageNumber);
+                    <span>
+                        @Html.ActionLink("Recent", "Index", "Messages", new { id = previousPageNumber }, null)
+                    </span>
+
+
+                }
+                if (ViewBag.isNextLinkAvailable)
+                {
+                    int nextPageNumber = pagenumber + 1;
+                    //Html.RenderAction("Post", "Index", previousPageNumber);
+                    <span>
+                        @Html.ActionLink("Previous", "Index", "Messages", new { id = nextPageNumber }, null)
+                    </span>
+
+                }
+
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-push-1 col-md-8 col-md-pull-1">
+        <div id="pingBox" class="pingboxfix">
+            <p>
+                @{Html.RenderPartial("_createPartial", new Messagecenter.Models.Message());}
+            </p>
+        </div>
+        </div>
+    </div>
+
+
+    <script>
+        setInterval("$('#MessageBox').load('/messages/refreshview')", 10000);
+
+    </script>

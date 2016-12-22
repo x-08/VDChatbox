@@ -1,0 +1,25 @@
+﻿@model Messagecenter.Models.Message
+
+
+@using (Html.BeginForm("Create", "Messages", FormMethod.Post, null))
+{
+
+  
+
+    <div class ="row">
+        <div class="col-lg-push-2 col-lg-3 col-xs-push-1 col-xs-11 ">
+            <div class="input-group">
+                
+                    @Html.TextAreaFor(model => model.Body, new { @class = "form-control input-sm", placeholder = "Type your message...", required = "required" })
+
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-warning btn-lg" id="btn-chat">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        </div>
+
+}
+
