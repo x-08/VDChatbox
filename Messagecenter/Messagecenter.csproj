@@ -127,14 +127,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\1.jpg" />
-    <Content Include="Content\13549497_458421050998358_281835433_n.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\messages.css" />
-    <Content Include="Content\pexels-photo-196651.jpeg" />
     <Content Include="Content\pexels-photo-63507.jpeg" />
-    <Content Include="Content\pexels-photo-64775.jpeg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
