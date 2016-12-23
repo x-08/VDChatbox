@@ -15,7 +15,7 @@ namespace Messagecenter.Controllers
     public class MessagesController : BaseController
     {
         private messagecenterEntities db = new messagecenterEntities();
-        private const int postPerPage = 10;
+        private const int postPerPage = 6;
         // GET: Messages
         public ActionResult Index(int? id)
         {
@@ -24,16 +24,17 @@ namespace Messagecenter.Controllers
                 return RedirectToAction("Login", "Users");
             }
             int p = id ?? 0;
-            IEnumerable<Message> messages = (from post in db.Messages
-                                             where post.Time < DateTime.Now
-                                             orderby post.Time descending
-                                             select post).Skip(p * postPerPage).Take(postPerPage);
+            IEnumerable<Message> m = db.Messages.ToList().OrderByDescending(mess=>mess.Time).Skip(p * postPerPage).Take(postPerPage);
+            //IEnumerable<Message> messages = (from post in db.Messages
+            //                                 where post.Time < DateTime.Now
+            //                                 orderby post.Time descending
+            //                                 select post).Skip(p * postPerPage).Take(postPerPage);
             ViewBag.isPreviousLinkAvailable = p > 0;
-            ViewBag.isNextLinkAvailable = messages.Count() > postPerPage - 1;
+            ViewBag.isNextLinkAvailable = m.Count() > postPerPage - 1;
             ViewBag.pageNumber = p;
             ViewBag.isAdmin = IsAdmin;
             ViewBag.isUser = isUser;
-            return View(messages.Reverse());
+            return View(m.Reverse());
         }
 
         [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.Client, Duration = 10)]
@@ -44,16 +45,18 @@ namespace Messagecenter.Controllers
                 return RedirectToAction("Login", "Users");
             }
             int p = id ?? 0;
-            IEnumerable<Message> messages = (from post in db.Messages
-                                             where post.Time < DateTime.Now
-                                             orderby post.Time descending
-                                             select post).Skip(p * postPerPage).Take(postPerPage);
+            //IEnumerable<Message> messages = (from post in db.Messages
+            //                                 where post.Time < DateTime.Now
+            //                                 orderby post.Time descending
+            //                                 select post).Skip(p * postPerPage).Take(postPerPage);
+            IEnumerable<Message> m = db.Messages.ToList().OrderByDescending(mess => mess.Time).Skip(p * postPerPage).Take(postPerPage);
+
             ViewBag.isPreviousLinkAvailable = p > 0;
-            ViewBag.isNextLinkAvailable = messages.Count() > postPerPage - 1;
+            ViewBag.isNextLinkAvailable = m.Count() > postPerPage - 1;
             ViewBag.pageNumber = p;
             ViewBag.isAdmin = IsAdmin;
             ViewBag.isUser = isUser;
-            return PartialView("_indexPartial", messages.Reverse());
+            return PartialView("_indexPartial", m.Reverse());
         }
         
  
