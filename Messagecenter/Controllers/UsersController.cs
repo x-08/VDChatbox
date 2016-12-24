@@ -61,8 +61,9 @@ namespace Messagecenter.Controllers
 
         public ActionResult Logout()
         {
-            Session["IsAdmin"] = null;
-            Session["Users"] = null;
+            Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
             return RedirectToAction("Login", "Users");
 
         }
