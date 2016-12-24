@@ -5,10 +5,12 @@
 <div id="messageContent" class="row">
     @foreach (var item in Model)
     {
+        bool checkUser = false;
         string tipclass = string.Empty;
         if(ViewBag.isUser == item.Name)
         {
             tipclass = "right-top floatright";
+            checkUser = true;
         }
         else
         {
@@ -20,7 +22,11 @@
                     <p>@Html.DisplayFor(modelItem => item.Body)</p>
                     <br />
                     <small>@Html.DisplayFor(modelItem => item.Time)</small>
-                    <span>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</span>
+                    @if (checkUser)
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id });
+                    }
+                    
                 </div>
             </div>
         </div>
